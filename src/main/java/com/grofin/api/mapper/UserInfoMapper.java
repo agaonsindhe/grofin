@@ -18,6 +18,20 @@ public class UserInfoMapper {
 
 		return userInfo;
 	}
+
+	public static UserInfoDTO mapModelToDTO(UserInfoModel userInfo) {
+		
+		UserInfoDTO userInfoDTO = new UserInfoDTO();
+		userInfoDTO.setUserId(userInfo.getUserId());
+		userInfoDTO.setContactNumber(userInfo.getContactNumber());
+		userInfoDTO.setEmail(userInfo.getEmail());
+		userInfoDTO.setFirstName(userInfo.getFirstName());
+		userInfoDTO.setLastName(userInfo.getLastName());
+		userInfoDTO.setPassword(userInfo.getPassword());
+		userInfoDTO.setReferralId(userInfo.getReferralId());
+		
+		return userInfoDTO;
+	}
 	
 
 }

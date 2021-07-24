@@ -27,4 +27,9 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 		return userInfo;
 	}
 
+	@Override
+	public UserInfoDTO registerUser(UserInfoDTO userInfoEntity) {
+		return userInfoRepository.save(userInfoEntity );
+	}
+
 }

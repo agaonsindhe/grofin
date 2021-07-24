@@ -9,12 +9,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 @Entity
 @Table(name = "user_info")
 public class UserInfoDTO {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
 	private Long userId;
 	
@@ -35,6 +37,7 @@ public class UserInfoDTO {
 	@Column(name="referral_id")
 	private Long referralId;
 	
+	@CreationTimestamp
 	@Column(name="create_ts")
 	private Timestamp createdTimestamp;
 	

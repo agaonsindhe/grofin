@@ -8,4 +8,8 @@ public interface UserInfoRepository extends JpaRepository<UserInfoDTO, Long> {
 
 	UserInfoDTO findByUserId(Long userId);
 	
+	@SuppressWarnings("unchecked")
+	UserInfoDTO save(UserInfoDTO userInfo);
+	
 }
+	
