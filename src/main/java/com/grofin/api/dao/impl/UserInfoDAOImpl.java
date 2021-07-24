@@ -19,9 +19,11 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	public UserInfoModel getUserInfo(String userId) {
 		
 		UserInfoDTO userInfoDTO = userInfoRepository.findByUserId(Long.parseLong(userId));
+		UserInfoModel userInfo = null;
 		
-		UserInfoModel userInfo = UserInfoMapper.map(userInfoDTO); 
-		
+		if(userInfoDTO!=null)
+			userInfo = UserInfoMapper.map(userInfoDTO); 
+	
 		return userInfo;
 	}
 

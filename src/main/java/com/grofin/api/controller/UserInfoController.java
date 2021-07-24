@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.grofin.api.model.StatusModel;
 import com.grofin.api.model.UserInfoModel;
+import com.grofin.api.model.response.UserInfoResponse;
 import com.grofin.api.service.UserInfoService;
 
 @RestController
@@ -19,13 +21,21 @@ public class UserInfoController {
 	private UserInfoService userInfoService;
 	
 	@GetMapping("/info")
-	public ResponseEntity<UserInfoModel> getUserInfo(@RequestParam String userId) {
-		 ResponseEntity<UserInfoModel> responseEntity = null;
+	public ResponseEntity<UserInfoResponse> getUserInfo(@RequestParam String userId) {
+		 ResponseEntity<UserInfoResponse> responseEntity = null;
+		 UserInfoResponse response = new UserInfoResponse();
 		 UserInfoModel userInfo = userInfoService.getUserInfo(userId);
-		 if(userInfo!=null) {
-			 responseEntity = new ResponseEntity<UserInfoModel>(HttpStatus.INTERNAL_SERVER_ERROR);
+		 StatusModel status = new StatusModel();
+		 if(userInfo==null) {
+			 status.setMessage("No Records Found!!");
+			 status.setStatusCode(HttpStatus.NOT_FOUND.toString());
+			 response.setStatusModel(status);
+			 responseEntity = new ResponseEntity<UserInfoResponse>(response,HttpStatus.NOT_FOUND);
 		 }else {
-			 responseEntity = new ResponseEntity<UserInfoModel>(userInfo, HttpStatus.OK);
+			 response.setUserInfoModel(userInfo);
+			 response.setStatusModel(status);
+			 status.setStatusCode(HttpStatus.OK.toString());
+			 responseEntity = new ResponseEntity<UserInfoResponse>(response, HttpStatus.OK);
 		 }
 		 return responseEntity;
 	}

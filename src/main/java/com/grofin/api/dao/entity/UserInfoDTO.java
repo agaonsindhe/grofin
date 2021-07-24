@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(schema = "user_info")
+@Table(name = "user_info")
 public class UserInfoDTO {
 
 	@Id

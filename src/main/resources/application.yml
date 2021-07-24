@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    password: admin
+    url: jdbc:mysql://localhost:3306/Grofin
+    username: root
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
